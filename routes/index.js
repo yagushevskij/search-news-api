@@ -2,6 +2,7 @@ const { celebrate, Joi } = require('celebrate');
 const escape = require('escape-html');
 const { login, createUser } = require('../controllers/users.js');
 const { users } = require('./users.js');
+const { articles } = require('./articles.js');
 const authentication = require('../middlewares/authentication');
 const authorization = require('../middlewares/authorization');
 const { cookieValidator } = require('../helpers.js');
@@ -33,4 +34,5 @@ module.exports = (app) => {
   app.use(authorization);
 
   app.use('/users', users);
+  app.use('/articles', articles);
 };

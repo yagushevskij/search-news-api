@@ -9,6 +9,13 @@ const urlValidator = (link) => {
   throw new ValidationError('Ошибка валидации URL');
 };
 
+const dateValidator = (date) => {
+  if (validator.isDate(date)) {
+    return date;
+  }
+  throw new ValidationError('Ошибка валидации даты');
+};
+
 const cookieValidator = (cookie) => {
   if (!cookie || !cookie.startsWith('Bearer ')) {
     throw new UnauthorizedError('Необходима авторизация');
@@ -16,4 +23,4 @@ const cookieValidator = (cookie) => {
   return cookie;
 };
 
-module.exports = { urlValidator, cookieValidator };
+module.exports = { urlValidator, cookieValidator, dateValidator };
