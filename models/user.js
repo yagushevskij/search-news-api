@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// userSchema.statics.createUser = async function createUser(obj) {
-//   const user = await this.create(obj);
-//   const { password, ...rest } = user.toJSON();
-//   return rest;
-// };
+userSchema.statics.createUser = async function createUser(obj) {
+  const user = await this.create(obj);
+  const { password, ...rest } = user.toJSON();
+  return rest;
+};
 
 module.exports = mongoose.model('user', userSchema);
