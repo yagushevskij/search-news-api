@@ -1,4 +1,4 @@
-const { errMessages } = require('../config.js');
+const { errMessages } = require('../config');
 
 module.exports = (err, req, res, next) => {
   const { statusCode = 500, message } = err;

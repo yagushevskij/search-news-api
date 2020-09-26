@@ -1,6 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const escape = require('escape-html');
-const { urlValidator, dateValidator, cookieValidator } = require('../helpers.js');
+const { urlValidator, dateValidator, cookieValidator } = require('../helpers');
 
 const validateSignInBody = celebrate({
   body: Joi.object().keys({

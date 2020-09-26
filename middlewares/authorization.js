@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const UnauthorizedError = require('../classes/UnauthorizedError');
-const { errMessages } = require('../config.js');
+const { errMessages } = require('../config');
 
 module.exports = async (req, res, next) => {
   try {

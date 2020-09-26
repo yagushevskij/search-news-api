@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../classes/NotFoundError');
 const UnauthorizedError = require('../classes/UnauthorizedError');
-const { errMessages } = require('../config.js');
-
-const { JWT_SECRET } = require('../config.js');
+const { errMessages, JWT_SECRET } = require('../config');
 
 const getUser = async (req, res, next) => {
   try {
