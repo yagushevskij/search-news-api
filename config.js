@@ -9,8 +9,9 @@ const errMessages = {
   wrongAuthData: 'Неверный логин или пароль',
   serverError: 'На сервере произошла ошибка',
   authorizationRequired: 'Необходима авторизация',
-  dateValidation: 'Введена невалидная дата',
-  urlValidation: 'Введен невалидный URL',
+  dateInvalid: 'Введена невалидная дата',
+  urlInvalid: 'Введен невалидный URL',
+  fieldRequired: 'Обязательное поле',
 };
 const sysMessages = {
   appListen: `App listening on port ${PORT}`,

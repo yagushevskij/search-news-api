@@ -1,7 +1,7 @@
 const Article = require('../models/article');
 const NotFoundError = require('../classes/NotFoundError');
 const ForbiddenError = require('../classes/ForbiddenError');
-const { errMessages } = require('../config');
+const { errMessages } = require('../config.js');
 
 const getArticles = async (req, res, next) => {
   try {

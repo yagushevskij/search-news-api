@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
+const { errMessages } = require('../config');
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Обязательное поле'],
+    required: [true, errMessages.fieldRequired],
   },
   email: {
     type: String,
     unique: true,
-    required: [true, 'Обязательное поле'],
+    required: [true, errMessages.fieldRequired],
   },
   password: {
     type: String,
-    required: [true, 'Обязательное поле'],
+    required: [true, errMessages.fieldRequired],
     select: false,
   },
 });

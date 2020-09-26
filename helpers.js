@@ -7,14 +7,14 @@ const urlValidator = (link) => {
   if (validator.isURL(link)) {
     return link;
   }
-  throw new ValidationError(errMessages.urlValidation);
+  throw new ValidationError(errMessages.urlInvalid);
 };
 
 const dateValidator = (date) => {
   if (validator.isDate(date)) {
     return date;
   }
-  throw new ValidationError(errMessages.dateValidation);
+  throw new ValidationError(errMessages.dateInvalid);
 };
 
 const cookieValidator = (cookie) => {
