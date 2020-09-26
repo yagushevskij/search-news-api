@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { isCelebrate } = require('celebrate');
+const helmet = require('helmet');
 
 const errHandler = require('./middlewares/errHandler');
 const NotFoundError = require('./classes/NotFoundError');
@@ -21,6 +22,7 @@ mongoose.connect(DB_CONN, {
   useUnifiedTopology: true,
 });
 
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
