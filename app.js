@@ -14,6 +14,7 @@ const routes = require('./routes');
 
 const app = addAsync(express());
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { limiter } = require('./middlewares/limiter');
 
 mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
@@ -22,6 +23,7 @@ mongoose.connect(DB_CONN, {
   useUnifiedTopology: true,
 });
 
+app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
