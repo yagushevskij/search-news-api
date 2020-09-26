@@ -1,3 +1,5 @@
+const { errMessages } = require('../config.js');
+
 module.exports = (err, req, res, next) => {
   const { statusCode = 500, message } = err;
   if (err.name === 'ValidationError') {
@@ -9,7 +11,7 @@ module.exports = (err, req, res, next) => {
     return;
   }
   res.status(statusCode).json({
-    message: statusCode === 500 ? 'На сервере произошла ошибка' : message,
+    message: statusCode === 500 ? errMessages.serverError : message,
   });
   next();
 };

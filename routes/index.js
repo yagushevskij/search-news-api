@@ -1,38 +1,19 @@
-const { celebrate, Joi } = require('celebrate');
-const escape = require('escape-html');
-const { login, createUser } = require('../controllers/users.js');
-const { users } = require('./users.js');
-const { articles } = require('./articles.js');
+const router = require('express').Router();
+
+const userRouter = require('./users.js');
+const articleRouter = require('./articles.js');
 const authentication = require('../middlewares/authentication');
 const authorization = require('../middlewares/authorization');
-const { cookieValidator } = require('../helpers.js');
+const { login, createUser } = require('../controllers/users.js');
+const {
+  validateSignInBody, validateSignUpBody, validateAuthHeaders,
+} = require('../middlewares/validations.js');
 
-module.exports = (app) => {
-  app.post('/signin', celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
-    }),
-  }), login);
+router.post('/signin', validateSignInBody, login);
+router.post('/signup', validateSignUpBody, createUser);
+router.use(validateAuthHeaders, authentication);
+router.use(authorization);
+router.use('/users', userRouter);
+router.use('/articles', articleRouter);
 
-  app.post('/signup', celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().required().trim()
-        .min(2)
-        .max(30)
-        .custom(escape),
-      email: Joi.string().required().email(),
-      password: Joi.string().required().min(8),
-    }),
-  }), createUser);
-
-  app.use(celebrate({
-    headers: Joi.object().keys({
-      authorization: Joi.string().required().custom(cookieValidator),
-    }).unknown(true),
-  }), authentication);
-  app.use(authorization);
-
-  app.use('/users', users);
-  app.use('/articles', articles);
-};
+module.exports = router;

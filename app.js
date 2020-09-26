@@ -3,16 +3,17 @@ const { addAsync } = require('@awaitjs/express');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { errors } = require('celebrate');
+const { isCelebrate } = require('celebrate');
 
 const errHandler = require('./middlewares/errHandler');
 const NotFoundError = require('./classes/NotFoundError');
+const { errMessages, sysMessages } = require('./config.js');
+const { DB_CONN, PORT } = require('./config.js');
+const routes = require('./routes');
 
-const { NODE_ENV, DB_CONN } = process.env;
-const { PORT = 3000 } = process.env;
 const app = addAsync(express());
 
-mongoose.connect(NODE_ENV === 'production' ? DB_CONN : 'mongodb://localhost:27017/news', {
+mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -21,15 +22,16 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONN : 'mongodb://localhost:2701
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-require('./routes')(app);
-
-app.use(errors());
+app.use(routes);
+app.use((err, req, res, next) => {
+  if (isCelebrate(err)) {
+    return next(err.joi);
+  }
+  return next(err);
+});
 app.use((req, res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден'));
+  next(new NotFoundError(errMessages.resourceNotFound));
 });
 app.use(errHandler);
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(sysMessages.appListen));

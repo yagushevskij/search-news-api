@@ -5,7 +5,7 @@
   "main": "./app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "cross-env NODE_ENV=production node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,6 @@
   "homepage": "https://github.com/yagushevskij/search-news-api#readme",
   "devDependencies": {
     "bl": "^2.2.1",
-    "cross-env": "^7.0.2",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
