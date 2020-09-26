@@ -3,7 +3,7 @@ const { DB_CONN = 'mongodb://localhost:27017/news' } = process.env;
 const { PORT = 3000 } = process.env;
 const errMessages = {
   resourceNotFound: 'Запрашиваемый ресурс не найден',
-  newsNotFound: 'Новость не нейдена',
+  newsNotFound: 'Новость не найдена',
   delNotOwnNewsProhibited: 'Удаление чужих новостей запрещено',
   userNotFound: 'Пользователь не найден',
   wrongAuthData: 'Неверный логин или пароль',
