@@ -7,11 +7,12 @@ const { isCelebrate } = require('celebrate');
 
 const errHandler = require('./middlewares/errHandler');
 const NotFoundError = require('./classes/NotFoundError');
-const { errMessages, sysMessages } = require('./config.js');
-const { DB_CONN, PORT } = require('./config.js');
+const { errMessages, sysMessages } = require('./config');
+const { DB_CONN, PORT } = require('./config');
 const routes = require('./routes');
 
 const app = addAsync(express());
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
@@ -22,7 +23,9 @@ mongoose.connect(DB_CONN, {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(requestLogger);
 app.use(routes);
+app.use(errorLogger);
 app.use((err, req, res, next) => {
   if (isCelebrate(err)) {
     return next(err.joi);
