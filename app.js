@@ -32,7 +32,9 @@ app.use(routes);
 app.use(errorLogger);
 app.use((err, req, res, next) => {
   if (isCelebrate(err)) {
-    return next(err.joi);
+    const error = err.joi;
+    error.statusCode = 400;
+    return next(error);
   }
   return next(err);
 });

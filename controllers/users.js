@@ -26,6 +26,9 @@ const createUser = async (req, res, next) => {
     });
     res.json(result);
   } catch (err) {
+    if ((err.name === 'MongoError') && (err.code === 11000)) {
+      err.statusCode = 409;
+    }
     next(err);
   }
 };
