@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-service",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Backend for news explorer service",
   "main": "./app.js",
   "scripts": {

@@ -1,27 +1,25 @@
 const validator = require('validator');
-const ValidationError = require('./classes/ValidationError');
-const UnauthorizedError = require('./classes/UnauthorizedError');
 const { errMessages } = require('./config');
 
-const urlValidator = (link) => {
+const urlValidator = (link, helpers) => {
   if (validator.isURL(link)) {
     return link;
   }
-  throw new ValidationError(errMessages.urlInvalid);
+  return helpers.message(errMessages.urlInvalid);
 };
 
-const dateValidator = (date) => {
+const dateValidator = (date, helpers) => {
   if (validator.isDate(date)) {
     return date;
   }
-  throw new ValidationError(errMessages.dateInvalid);
+  return helpers.message(errMessages.dateInvalid);
 };
 
-const cookieValidator = (cookie) => {
-  if (!cookie || !cookie.startsWith('Bearer ')) {
-    throw new UnauthorizedError(errMessages.authorizationRequired);
+const cookieValidator = (cookie, helpers) => {
+  if (cookie && cookie.startsWith('Bearer ')) {
+    return cookie;
   }
-  return cookie;
+  return helpers.message(errMessages.authorizationRequired);
 };
 
 module.exports = { urlValidator, cookieValidator, dateValidator };
