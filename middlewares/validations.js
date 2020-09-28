@@ -22,7 +22,7 @@ const validateSignUpBody = celebrate({
 
 const validateAuthCookies = celebrate({
   headers: Joi.object().keys({
-    cookie: Joi.string().required().custom(cookieValidator),
+    cookie: Joi.string().custom(cookieValidator),
   }).unknown(true),
 });
 
