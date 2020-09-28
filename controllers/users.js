@@ -36,11 +36,10 @@ const createUser = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email }).select('+password').orFail(new UnauthorizedError(errMessages.wrongAuthData));
-    const isPassCorrect = await bcrypt.compare(password, user.password);
-    if (isPassCorrect) {
+    const user = await User.findUserByCredentials(email, password);
+    if (user) {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-      res.cookie('jwt', token, { maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true, sameSite: true }).end();
+      res.cookie('jwt', token, { maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true, sameSite: true }).send(user);
     } else {
       next(new UnauthorizedError(errMessages.wrongAuthData));
     }
