@@ -16,7 +16,7 @@ const dateValidator = (date, helpers) => {
 };
 
 const cookieValidator = (cookie, helpers) => {
-  if (cookie && cookie.startsWith('Bearer ')) {
+  if (cookie && cookie.startsWith('jwt')) {
     return cookie;
   }
   return helpers.message(errMessages.authorizationRequired);

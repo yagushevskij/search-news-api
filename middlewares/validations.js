@@ -20,9 +20,9 @@ const validateSignUpBody = celebrate({
   }),
 });
 
-const validateAuthHeaders = celebrate({
+const validateAuthCookies = celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required().custom(cookieValidator),
+    cookie: Joi.string().required().custom(cookieValidator),
   }).unknown(true),
 });
 
@@ -51,7 +51,7 @@ const validateArticleReq = celebrate({
 module.exports = {
   validateSignInBody,
   validateSignUpBody,
-  validateAuthHeaders,
+  validateAuthCookies,
   validateArticleBody,
   validateArticleReq,
 };
