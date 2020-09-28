@@ -1,4 +1,4 @@
-# Backend сервиса NewsExplorer, v.1.0.7
+# Backend сервиса NewsExplorer, v.1.0.8
 
 ## Описание проекта
 Серверная часть сервиса NewsExplorer - поиска мировых новостей.
