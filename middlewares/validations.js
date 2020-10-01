@@ -1,6 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const escape = require('escape-html');
-const { urlValidator, dateValidator, cookieValidator } = require('../helpers');
+const { urlValidator, dateValidator } = require('../helpers');
 const { errMessages } = require('../config');
 
 const validateSignInBody = celebrate({
@@ -23,7 +23,7 @@ const validateSignUpBody = celebrate({
 
 const validateAuthCookies = celebrate({
   headers: Joi.object().keys({
-    cookie: Joi.string().custom(cookieValidator),
+    cookie: Joi.string(),
   }).messages({
     'string.required': errMessages.authorizationRequired,
   }).unknown(true),
