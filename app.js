@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { isCelebrate } = require('celebrate');
 const helmet = require('helmet');
+const cors = require('cors');
 
+const corsOptions = require('./middlewares/cors');
 const errHandler = require('./middlewares/errHandler');
 const NotFoundError = require('./classes/NotFoundError');
 const { errMessages, sysMessages } = require('./config');
@@ -23,6 +25,7 @@ mongoose.connect(DB_CONN, {
   useUnifiedTopology: true,
 });
 
+app.use('*', cors(corsOptions));
 app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
