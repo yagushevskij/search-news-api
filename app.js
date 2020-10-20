@@ -7,7 +7,6 @@ const { isCelebrate } = require('celebrate');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const corsOptions = require('./middlewares/cors');
 const errHandler = require('./middlewares/errHandler');
 const NotFoundError = require('./classes/NotFoundError');
 const { errMessages, sysMessages } = require('./config');
@@ -17,6 +16,23 @@ const routes = require('./routes');
 const app = addAsync(express());
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
+
+const corsOptions = {
+  origin: [
+    'https://turbomegapro.ru',
+    'http://localhost:8080',
+    'https://yagushevskij.github.io'
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: [
+    'Content-Type',
+    'origin',
+    'x-access-token'
+  ],
+  credentials: true
+}
 
 mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
