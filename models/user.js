@@ -4,7 +4,7 @@ const { errMessages } = require('../config');
 const UnauthorizedError = require('../classes/UnauthorizedError');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: [true, errMessages.fieldRequired],
   },

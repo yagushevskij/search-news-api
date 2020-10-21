@@ -18,11 +18,11 @@ const getUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const {
-      email, name,
+      email, username,
     } = req.body;
     const password = await bcrypt.hash(req.body.password, 10);
     const result = await User.createUser({
-      name, email, password,
+      username, email, password,
     });
     res.json(result);
   } catch (err) {

@@ -12,7 +12,7 @@ const validateSignInBody = celebrate({
 
 const validateSignUpBody = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().trim()
+    username: Joi.string().required().trim()
       .min(2)
       .max(30)
       .custom(escape),
