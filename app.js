@@ -21,7 +21,7 @@ const corsOptions = {
   origin: [
     'https://turbomegapro.ru',
     'http://localhost:8080',
-    'https://yagushevskij.github.io'
+    'https://yagushevskij.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -29,10 +29,10 @@ const corsOptions = {
   allowedHeaders: [
     'Content-Type',
     'origin',
-    'x-access-token'
+    'x-access-token',
   ],
-  credentials: true
-}
+  credentials: true,
+};
 
 mongoose.connect(DB_CONN, {
   useNewUrlParser: true,

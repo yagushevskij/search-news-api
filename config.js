@@ -16,6 +16,9 @@ const errMessages = {
 const sysMessages = {
   appListen: `App listening on port ${PORT}`,
 };
+const resultMessages = {
+  logout: 'Выполнен logout',
+};
 module.exports = {
-  JWT_SECRET, DB_CONN, PORT, errMessages, sysMessages,
+  JWT_SECRET, DB_CONN, PORT, errMessages, sysMessages, resultMessages,
 };

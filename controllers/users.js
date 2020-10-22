@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../classes/NotFoundError');
 const UnauthorizedError = require('../classes/UnauthorizedError');
-const { errMessages, JWT_SECRET } = require('../config');
+const { errMessages, resultMessages, JWT_SECRET } = require('../config');
 
 const getUser = async (req, res, next) => {
   try {
@@ -48,6 +48,14 @@ const login = async (req, res, next) => {
   }
 };
 
+const logout = async (req, res, next) => {
+  try {
+    res.cookie('jwt').send({ message: resultMessages.logout });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
-  getUser, createUser, login,
+  getUser, createUser, login, logout,
 };
