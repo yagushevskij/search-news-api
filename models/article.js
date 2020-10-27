@@ -10,23 +10,26 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: [true, errMessages.fieldRequired],
   },
-  text: {
+  description: {
     type: String,
     required: [true, errMessages.fieldRequired],
   },
-  date: {
+  publishedAt: {
     type: String,
     required: [true, errMessages.fieldRequired],
   },
-  source: {
+  source:
+  {
+    name: {
+      type: String,
+      required: [true, errMessages.fieldRequired],
+    },
+  },
+  url: {
     type: String,
     required: [true, errMessages.fieldRequired],
   },
-  link: {
-    type: String,
-    required: [true, errMessages.fieldRequired],
-  },
-  image: {
+  urlToImage: {
     type: String,
     required: [true, errMessages.fieldRequired],
   },

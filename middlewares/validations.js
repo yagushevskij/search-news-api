@@ -35,13 +35,15 @@ const validateArticleBody = celebrate({
       .custom(escape),
     title: Joi.string().required().trim()
       .custom(escape),
-    text: Joi.string().required().trim()
+    description: Joi.string().required().trim()
       .custom(escape),
-    date: Joi.string().required().custom(dateValidator),
-    source: Joi.string().required().trim()
-      .custom(escape),
-    link: Joi.string().required().custom(urlValidator),
-    image: Joi.string().required().custom(urlValidator),
+    publishedAt: Joi.string().required().custom(dateValidator),
+    source: Joi.object().keys({
+      name: Joi.string().required().trim()
+        .custom(escape),
+    }),
+    url: Joi.string().required().custom(urlValidator),
+    urlToImage: Joi.string().required().custom(urlValidator),
   }),
 });
 

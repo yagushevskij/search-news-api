@@ -14,10 +14,17 @@ const getArticles = async (req, res, next) => {
 const createArticle = async (req, res, next) => {
   try {
     const {
-      keyword, title, text, date, source, link, image,
+      keyword, title, description, publishedAt, source, url, urlToImage,
     } = req.body;
     const result = await Article.create({
-      keyword, title, text, date, source, link, image, owner: req.user._id,
+      keyword,
+      title,
+      description,
+      publishedAt,
+      url,
+      urlToImage,
+      source,
+      owner: req.user._id,
     });
     res.json(result);
   } catch (err) {
