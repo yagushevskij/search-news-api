@@ -5,7 +5,7 @@ const { errMessages } = require('../config.js');
 
 const getArticles = async (req, res, next) => {
   try {
-    res.json(await Article.find({ owner: req.user._id }));
+    res.json(await Article.find({ owner: req.user._id }).populate('owner'));
   } catch (err) {
     next(err);
   }
