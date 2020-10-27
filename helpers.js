@@ -9,7 +9,7 @@ const urlValidator = (link, helpers) => {
 };
 
 const dateValidator = (date, helpers) => {
-  if (validator.isDate(date)) {
+  if (validator.isISO8601(date)) {
     return date;
   }
   return helpers.message(errMessages.dateInvalid);
