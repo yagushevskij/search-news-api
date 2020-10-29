@@ -39,7 +39,7 @@ const login = async (req, res, next) => {
     const user = await User.findUserByCredentials(email, password);
     if (user) {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-      res.cookie('jwt', token, { maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true, sameSite: 'Lax' }).send(user);
+      res.cookie('jwt', token, { maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true }).send(user);
     } else {
       next(new UnauthorizedError(errMessages.wrongAuthData));
     }
