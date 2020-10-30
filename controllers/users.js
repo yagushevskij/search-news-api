@@ -40,7 +40,7 @@ const login = async (req, res, next) => {
     if (user) {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.cookie('jwt', token, {
-        maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true, sameSite: false, secure: true,
+        maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true, sameSite: true,
       }).send(user);
     } else {
       next(new UnauthorizedError(errMessages.wrongAuthData));
