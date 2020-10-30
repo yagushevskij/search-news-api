@@ -19,9 +19,7 @@ const { limiter } = require('./middlewares/limiter');
 
 const corsOptions = {
   origin: [
-    'https://turbomegapro.ru',
-    'https://www.turbomegapro.ru',
-    'https://news.turbomegapro.ru',
+    'https://news-explorer.turbomegapro.ru',
     'http://localhost:8080',
     'https://yagushevskij.github.io',
   ],
