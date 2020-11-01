@@ -52,7 +52,7 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
   try {
-    res.cookie('jwt').send({ message: resultMessages.logout });
+    res.cookie('jwt', '', { httpOnly: true, sameSite: true }).send({ message: resultMessages.logout });
   } catch (err) {
     next(err);
   }
