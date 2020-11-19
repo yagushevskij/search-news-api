@@ -19,7 +19,7 @@
 ## Дополнительная информация
 Ознакомиться с работой данного API можно на удаленном сервере:
 - IP адрес: 159.69.145.176
-- URLs: https://api.turbomegapro.ru https://www.api.turbomegapro.ru
+- URLs: https://news-explorer-api.turbomegapro.ru http://news-explorer-api.turbomegapro.ru
 
 ## Используемые технологии
 - node.js, express, mongo
