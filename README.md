@@ -51,7 +51,7 @@
     "link": "http://site.ru",
     "image": "https://site.ru/img.jpg"
 }
-Удалить карточку:
+- Удалить карточку:
 > DELETE localhost:3000/articles/ID_вашей_карточки
 
 
