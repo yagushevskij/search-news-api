@@ -56,9 +56,7 @@
 
 
 ## Дополнительная информация
-Демка API:
-- IP адрес API: 159.69.145.176
-- Так же API работает на доменах: https://news-explorer-api.turbomegapro.ru http://news-explorer-api.turbomegapro.ru
+Демка API: https://news-explorer-api.turbomegapro.ru
 
 ## Используемые технологии
 - Node.js, Express.js, MongoDB
