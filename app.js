@@ -21,6 +21,7 @@ const corsOptions = {
   origin: [
     'https://news-explorer.turbomegapro.ru',
     'http://localhost:8080',
+    'http://localhost:8081',
     'https://yagushevskij.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
